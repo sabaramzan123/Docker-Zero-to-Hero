@@ -16,6 +16,16 @@ spec:
     spec:
       containers:
       - name: python-app
-        image: python-sample-app-demo:v1  
+        image: python-sample-app-demo:v1 
+        volumeMounts: 
+        - name: secret-volume
+          mountPath: /app/secret
+          readOnly: true
+
+
         ports:
         - containerPort: 8000
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: test-secret1
